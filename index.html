@@ -73,7 +73,6 @@
         document.body.appendChild(canvas);
         const ctx = canvas.getContext('2d');
         const subtitle = document.getElementById('subtitle');
-        const music = document.getElementById('music');
 
         const subtitles = ['既然雪少', '那在网站看看吧', '图姐', '2025新年快乐'];
         let subtitleIndex = 0;
@@ -186,7 +185,7 @@
 
         let snowflakes = [];
         const snowflakeCount = 200;
-        const maxSnowDepth = 100; // 增大雪积攒深度上限
+        const maxSnowDepth = 100;
         let snowDepth = 0;
         const snowPiles = new Array(canvas.width).fill(0);
 
@@ -218,7 +217,6 @@
             playButton.style.display = 'none';
             setInterval(createFirework, 300);
             showNextSubtitle();
-            music.play();
             setInterval(() => createSnowflakes(50), 500);
         });
 
