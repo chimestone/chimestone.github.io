@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新年烟花特效</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #playButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 50px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            outline: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #playButton:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+        }
+
+        #playButton:active {
+            transform: translate(-50%, -50%) scale(0.95);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <button id="playButton">点这个！</button>
+
+    <script>
+        const playButton = document.getElementById('playButton');
+        const canvas = document.createElement('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+
+        class Firework {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.particles = [];
+                this.createParticle();
+            }
+
+            createParticle() {
+                const explosionHeight = Math.random() * (canvas.height * 0.6) + canvas.height * 0.2;
+                this.particles.push({
+                    x: this.x,
+                    y: this.y,
+                    vx: (Math.random() - 0.5) * 2,
+                    vy: -Math.random() * 6 - 4,
+                    alpha: 1,
+                    life: Math.random() * 60 + 40,
+                    size: Math.random() * 5 + 2,
+                    explosionHeight: explosionHeight
+                });
+            }
+
+            update() {
+                this.particles.forEach(particle => {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    particle.alpha -= 0.01;
+                    particle.life -= 1;
+                    if (particle.y <= particle.explosionHeight) {
+                        this.explode(particle.x, particle.y, particle.explosionHeight);
+                        particle.vy = 0;
+                        particle.vx = 0;
+                    }
+                    particle.vy += 0.05;
+                });
+                this.particles = this.particles.filter(particle => particle.alpha > 0 && particle.life > 0);
+            }
+
+            explode(x, y, explosionHeight) {
+                for (let i = 0; i < 80; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = Math.random() * 5 + 2;
+                    const vx = Math.cos(angle) * speed;
+                    const vy = Math.sin(angle) * speed;
+                    this.particles.push({
+                        x: x,
+                        y: y,
+                        vx: vx,
+                        vy: vy,
+                        alpha: 1,
+                        life: Math.random() * 60 + 40,
+                        size: Math.random() * 3 + 1,
+                        color: this.color
+                    });
+                }
+            }
+
+            draw() {
+                this.particles.forEach(particle => {
+                    ctx.globalAlpha = particle.alpha;
+                    ctx.fillStyle = particle.color || this.color;
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            }
+        }
+
+        let fireworks = [];
+
+        function createFirework() {
+            const x = Math.random() * canvas.width;
+            const y = canvas.height;
+            const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            fireworks.push(new Firework(x, y, color));
+        }
+
+        playButton.addEventListener('click', () => {
+            playButton.style.display = 'none';
+            setInterval(createFirework, 300);
+        });
+
+        // 新增：雪花类
+        class Snowflake {
+            constructor(x, y, size) {
+                this.x = x;
+                this.y = y;
+                this.size = size;
+                this.speed = Math.random() * 2 + 1;
+                this.vx = (Math.random() - 0.5) * 2;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.speed;
+                if (this.y > canvas.height) {
+                    this.y = 0;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = '#fff';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        let snowflakes = [];
+        const snowflakeCount = 200;
+
+        // 初始化雪花
+        for (let i = 0; i < snowflakeCount; i++) {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            const size = Math.random() * 2 + 1;
+            snowflakes.push(new Snowflake(x, y, size));
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            fireworks.forEach((firework, index) => {
+                firework.update();
+                firework.draw();
+                if (firework.particles.length === 0) {
+                    fireworks.splice(index, 1);
+                }
+            });
+
+            // 新增：更新和绘制雪花
+            snowflakes.forEach(snowflake => {
+                snowflake.update();
+                snowflake.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+
+</html>
