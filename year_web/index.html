@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新年烟花特效</title>
+    <title>year_gift_toTu</title>
     <style>
         body {
             margin: 0;
@@ -47,11 +47,23 @@
             transform: translate(-50%, -50%) scale(0.95);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
+
+        #subtitle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 36px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
     </style>
 </head>
 
 <body>
     <button id="playButton">点这个！</button>
+    <div id="subtitle"></div>
 
     <script>
         const playButton = document.getElementById('playButton');
@@ -60,6 +72,11 @@
         canvas.height = window.innerHeight;
         document.body.appendChild(canvas);
         const ctx = canvas.getContext('2d');
+        const subtitle = document.getElementById('subtitle');
+        const music = document.getElementById('music');
+
+        const subtitles = ['既然雪少', '那在网站看看吧', '图姐', '2025新年快乐'];
+        let subtitleIndex = 0;
 
         class Firework {
             constructor(x, y, color) {
@@ -139,28 +156,24 @@
             fireworks.push(new Firework(x, y, color));
         }
 
-        playButton.addEventListener('click', () => {
-            playButton.style.display = 'none';
-            setInterval(createFirework, 300);
-        });
-
-        // 新增：雪花类
         class Snowflake {
             constructor(x, y, size) {
                 this.x = x;
                 this.y = y;
                 this.size = size;
-                this.speed = Math.random() * 2 + 1;
+                this.speed = Math.random() * 3 + 2;
                 this.vx = (Math.random() - 0.5) * 2;
             }
 
             update() {
                 this.x += this.vx;
                 this.y += this.speed;
-                if (this.y > canvas.height) {
-                    this.y = 0;
-                    this.x = Math.random() * canvas.width;
+                if (this.y > canvas.height - snowDepth) {
+                    this.y = canvas.height - snowDepth;
+                    snowPiles[Math.floor(this.x)] = Math.min(snowPiles[Math.floor(this.x)] + this.size, maxSnowDepth);
+                    return false;
                 }
+                return true;
             }
 
             draw() {
@@ -173,14 +186,41 @@
 
         let snowflakes = [];
         const snowflakeCount = 200;
+        const maxSnowDepth = 100; // 增大雪积攒深度上限
+        let snowDepth = 0;
+        const snowPiles = new Array(canvas.width).fill(0);
+
+        function createSnowflakes(count) {
+            for (let i = 0; i < count; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const size = Math.random() * 2 + 1;
+                snowflakes.push(new Snowflake(x, y, size));
+            }
+        }
 
         // 初始化雪花
-        for (let i = 0; i < snowflakeCount; i++) {
-            const x = Math.random() * canvas.width;
-            const y = Math.random() * canvas.height;
-            const size = Math.random() * 2 + 1;
-            snowflakes.push(new Snowflake(x, y, size));
+        createSnowflakes(snowflakeCount);
+
+        function showNextSubtitle() {
+            if (subtitleIndex < subtitles.length) {
+                subtitle.textContent = subtitles[subtitleIndex];
+                subtitle.style.opacity = 1;
+                setTimeout(() => {
+                    subtitle.style.opacity = 0;
+                    subtitleIndex++;
+                    showNextSubtitle();
+                }, 3000);
+            }
         }
+
+        playButton.addEventListener('click', () => {
+            playButton.style.display = 'none';
+            setInterval(createFirework, 300);
+            showNextSubtitle();
+            music.play();
+            setInterval(() => createSnowflakes(50), 500);
+        });
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -192,11 +232,18 @@
                 }
             });
 
-            // 新增：更新和绘制雪花
+            // 更新和绘制雪花
+            snowflakes = snowflakes.filter(snowflake => snowflake.update());
             snowflakes.forEach(snowflake => {
-                snowflake.update();
                 snowflake.draw();
             });
+
+            // 绘制积雪
+            snowDepth = Math.max(...snowPiles);
+            ctx.fillStyle = '#fff';
+            for (let x = 0; x < canvas.width; x++) {
+                ctx.fillRect(x, canvas.height - snowPiles[x], 1, snowPiles[x]);
+            }
 
             requestAnimationFrame(animate);
         }
