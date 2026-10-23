@@ -1,0 +1,7 @@
+/public/
+/resources/
+/.hugo_build.lock
+/.tools/
+/.hugo-cache/
+/.env
+/.env.*
