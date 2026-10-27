@@ -36,8 +36,8 @@ menu:
 params:
   description: "我的个人博客"
   profile:
-    name: "chimestone"
-    tagline: "记录学习，整理思考。"
+    name: "chime-stone"
+    tagline: "钟磬昼不响，空山自泠泠"
     github: "https://github.com/chimestone"
     avatar: "https://avatars.githubusercontent.com/u/182640298?v=4&size=192"
   dateFormat: "2006年1月2日"
