@@ -35,6 +35,10 @@ menu:
 
 params:
   description: "我的个人博客"
+  profile:
+    name: "chimestone"
+    tagline: "记录学习，整理思考。"
+    github: "https://github.com/chimestone"
   dateFormat: "2006年1月2日"
   theme:
     default: dark

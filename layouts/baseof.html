@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}" dir="ltr">
+  {{ partial "head.html" . }}
+  <body class="notes-site{{ if .IsHome }} is-home{{ end }}">
+    <noscript><style>@media(max-width:760px){.notes-sidebar{display:block;position:static;height:auto;border-right:0;padding:0}.notes-sidebar-inner{height:auto}.notes-tree-scroll{max-height:240px}.notes-mobile-header button{display:none}}</style></noscript>
+    <a class="notes-skip" href="#content">跳至内容</a>
+    <header class="notes-mobile-header">
+      <button class="notes-icon-button" type="button" data-nav-open aria-label="打开全站导航" aria-haspopup="dialog" aria-controls="notes-navigation">{{ partial "notes/icon.html" "menu" }}</button>
+      <a href="{{ site.Home.RelPermalink }}">{{ site.Params.profile.name | default site.Title }}<span class="notes-small-dot"></span></a>
+      <button class="notes-icon-button" type="button" data-search-open aria-haspopup="dialog" aria-controls="hextra-search-dialog" aria-label="搜索文章">{{ partial "notes/icon.html" "search" }}</button>
+    </header>
+    <div class="notes-layout">
+      <aside class="notes-sidebar" id="notes-sidebar" aria-label="个人信息与全站导航">{{ partial "notes/sidebar.html" . }}</aside>
+      <div class="notes-main-column">
+        <header class="notes-context"><span>{{ if .IsHome }}个人博客 / PERSONAL JOURNAL{{ else }}<a href="{{ site.Home.RelPermalink }}">首页</a><span class="notes-slash">/</span>{{ if and .IsPage (eq .Section "blog") }}<a href="{{ "blog/" | relURL }}">博客</a><span class="notes-slash">/</span>{{ end }}{{ .Title }}{{ end }}</span><span class="notes-context-right">{{ if and .IsPage (ne .Params.toc false) }}<button type="button" class="notes-outline-open" data-toc-open aria-haspopup="dialog" aria-controls="notes-mobile-toc">{{ partial "notes/icon.html" "list" }} 本文目录</button>{{ else }}保持好奇 · 持续记录{{ end }}</span></header>
+        <main id="content" tabindex="-1">{{ block "main" . }}{{ end }}</main>
+        <footer class="notes-footer"><span>© {{ now.Year }} {{ site.Params.profile.name | default site.Title }}</span><span>以文字留住思考 <span aria-hidden="true">↗</span></span></footer>
+      </div>
+      <aside class="notes-right" aria-label="{{ if .IsHome }}最近更新{{ else }}阅读辅助{{ end }}">{{ partial "notes/right.html" . }}</aside>
+    </div>
+    <dialog id="notes-navigation" class="notes-nav-dialog" aria-label="全站导航"><div class="notes-dialog-heading"><span>探索这个博客</span><button type="button" class="notes-icon-button" data-dialog-close aria-label="关闭全站导航">{{ partial "notes/icon.html" "close" }}</button></div><div data-navigation-slot></div></dialog>
+    <dialog id="notes-mobile-toc" class="notes-toc-dialog" aria-label="本文目录"><div class="notes-dialog-heading"><span>本文目录</span><button type="button" class="notes-icon-button" data-dialog-close aria-label="关闭本文目录">{{ partial "notes/icon.html" "close" }}</button></div><div class="notes-mobile-outline">{{ if ne .Params.toc false }}{{ .TableOfContents | replaceRE ` id="TableOfContents"` "" | safeHTML }}{{ end }}</div></dialog>
+    {{ partial "components/search-dialog.html" . }}
+    {{ partial "scripts.html" . }}
+    {{ $js := resources.Get "js/notes.js" | minify | fingerprint }}<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+  </body>
+</html>

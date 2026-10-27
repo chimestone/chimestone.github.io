@@ -1,6 +1,8 @@
 # 我的博客
 
-基于 Hugo 和 Hextra 的中文个人博客，使用主题原装的文档布局：左侧文章导航、正文、右侧章节目录。默认使用黑色深色模式，可通过左侧底部的主题开关切换。
+基于 Hugo 和 Hextra 的中文个人博客，采用定制深色三栏布局：左侧固定个人信息和可独立滚动的文章目录，中间首页/正文，右侧最近更新或章节目录与开源背景猫。默认深色，可通过左侧底部的主题开关切换。
+
+界面设计与验收文档：[docs/UI-REDESIGN.md](docs/UI-REDESIGN.md)。猫素材来源和许可：[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
 网站：https://chimestone.github.io/
 
@@ -42,16 +44,20 @@ hugo server -D
 hugo new content blog/my-next-post.md
 ```
 
-在生成的 Markdown 文件中填写标题、正文、`description`（摘要）和 `tags`（标签），可用 `weight` 调整左侧导航顺序。发布时将 `draft: true` 改为 `draft: false`，并确认日期不是未来时间。新文章会自动出现在左侧导航中；如需在博客索引正文中展示链接，可同时编辑 `content/blog/_index.md`。
+在生成的 Markdown 文件中填写标题、正文、`description`（摘要）和 `tags`（标签），可用 `weight` 调整左侧导航顺序。发布时将 `draft: true` 改为 `draft: false`，并确认日期不是未来时间。新文章自动出现在左侧目录、博客索引和首页最近文章中，无需手动添加链接。子文件夹使用 `_index.md` 建立分类分组。
 
 ## 修改内容与样式
 
-- `hugo.yaml`：站名、导航、站点介绍及域名。
+- `hugo.yaml`：站名、导航、站点介绍及域名；`params.profile` 控制作者名字、简介与 GitHub 链接，可添加 `avatar: images/avatar.jpg` 并将图片放在 `static/images/avatar.jpg`。
 - `content/_index.md`：首页介绍。
-- `content/blog/_index.md`：博客索引与文章链接。
+- `content/blog/_index.md`：博客索引介绍，文章列表自动生成。
 - `content/about.md`：关于页面。
 
-页面布局与配色直接使用 Hextra 原装样式。`content/_index.md` 的 `cascade.type: docs` 会让所有内容页使用文档布局，`hugo.yaml` 的 `params.theme.default: dark` 设置默认深色模式。浏览器会记住手动选择的主题；如果仍显示浅色，通过侧栏底部切换到深色即可。
+- `layouts/_partials/notes/`：个人区、首页、文章、目录、右栏等布局；首页主标题在 `home.html`。
+- `assets/css/custom.css`：布局、颜色、响应式与动效。
+- `assets/js/notes.js`：目录状态、抽屉、阅读进度、猫眼追踪。
+
+保留 Hextra 的 Markdown 渲染、全文搜索和主题切换；`cascade.type: docs` 继续使用本站的文档式布局覆盖。浏览器会记住手动选择的主题；如果仍显示浅色，通过侧栏底部切换到深色即可。手机通过左上角菜单查看导航，通过文章顶部“本文目录”查看章节。
 
 ## 构建
 

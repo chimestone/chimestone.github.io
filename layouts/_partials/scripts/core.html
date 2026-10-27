@@ -1,0 +1,10 @@
+{{/* Retain Hextra render/theme utilities; custom navigation and TOC live in notes.js. */}}
+{{ $scripts := slice }}
+{{ range resources.Match "js/core/*.js" }}
+  {{ if not (in (slice "menu.js" "sidebar.js" "toc-scroll.js" "back-to-top.js") (path.Base .Name)) }}
+    {{ $scripts = $scripts | append (resources.ExecuteAsTemplate .Name $ .) }}
+  {{ end }}
+{{ end }}
+{{ $bundle := $scripts | resources.Concat "js/main.js" }}
+{{ if hugo.IsProduction }}{{ $bundle = $bundle | minify | fingerprint }}{{ end }}
+<script defer src="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}"></script>
