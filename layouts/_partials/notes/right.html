@@ -8,6 +8,5 @@
     {{ if .IsPage }}<div class="notes-reading"><div><span>阅读进度</span><output data-reading-label>0%</output></div><div class="notes-reading-track"><div data-reading-bar></div></div><button type="button" data-back-top>回到顶部 <span aria-hidden="true">↑</span></button></div>{{ end }}
     {{ if not .IsPage }}<a class="notes-rss-link" href="{{ "blog/index.xml" | relURL }}">{{ partial "notes/icon.html" "rss" }}<span>订阅博客<small>让更新自己找过来。</small></span></a>{{ end }}
   {{ end }}
-  <div class="notes-cat-space">{{ partial "notes/cat.html" . }}</div>
   <div class="notes-rail-footer"><span>STAY CURIOUS.</span><span aria-hidden="true">✳</span></div>
 </div>

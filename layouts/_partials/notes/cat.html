@@ -1,11 +1,11 @@
-{{/* Adapted from Tabler Icons cat.svg (MIT), Paweł Kuna. See THIRD_PARTY_NOTICES.md. */}}
+{{/* User-provided reference, transparent extraction. See THIRD_PARTY_NOTICES.md. */}}
 <div class="notes-cat" data-cat aria-hidden="true">
-  <span class="notes-cat-star">✧</span>
-  <svg class="notes-cat-art" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".24" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-    <path d="M20 3v10a8 8 0 1 1 -16 0v-10l3.432 3.432a7.963 7.963 0 0 1 4.568 -1.432c1.769 0 3.403 .574 4.728 1.546l3.272 -3.546"/>
-    <path d="M2 16h5l-4 4M22 16h-5l4 4M11 16a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/>
-    <g class="notes-cat-eye"><circle data-eye cx="9" cy="11" r="1.25" fill="currentColor" stroke="none"/><g data-pupil transform="translate(0 0)"><circle cx="9" cy="11" r=".82" fill="var(--notes-bg)" stroke="none"/><circle cx="8.78" cy="10.7" r=".22" fill="currentColor" stroke="none"/></g></g>
-    <g class="notes-cat-eye"><circle data-eye cx="15" cy="11" r="1.25" fill="currentColor" stroke="none"/><g data-pupil transform="translate(0 0)"><circle cx="15" cy="11" r=".82" fill="var(--notes-bg)" stroke="none"/><circle cx="14.78" cy="10.7" r=".22" fill="currentColor" stroke="none"/></g></g>
+  <svg class="notes-cat-art" viewBox="230 70 1360 817" fill="none" focusable="false" preserveAspectRatio="xMidYMax meet">
+    <image href="{{ "images/cat-reference-transparent.png" | relURL }}" width="1774" height="887"/>
+    {{/* Separate eye layers preserve cursor tracking without redrawing the cat. */}}
+    <circle data-eye data-travel="17" cx="645" cy="770" r="99" fill="#f6f6f6"/>
+    <g data-pupil transform="translate(0 0)"><circle cx="645" cy="770" r="77" fill="#101112"/><circle cx="621" cy="741" r="18" fill="#fff"/><circle cx="661" cy="742" r="8" fill="#fff"/></g>
+    <circle data-eye data-travel="17" cx="1137" cy="768" r="99" fill="#f6f6f6"/>
+    <g data-pupil transform="translate(0 0)"><circle cx="1137" cy="768" r="77" fill="#101112"/><circle cx="1113" cy="739" r="18" fill="#fff"/><circle cx="1153" cy="740" r="8" fill="#fff"/></g>
   </svg>
-  <span class="notes-cat-ledge"></span>
 </div>

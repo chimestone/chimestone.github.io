@@ -1,6 +1,6 @@
 # 我的博客
 
-基于 Hugo 和 Hextra 的中文个人博客，采用定制深色三栏布局：左侧固定个人信息和可独立滚动的文章目录，中间首页/正文，右侧最近更新或章节目录与开源背景猫。默认深色，可通过左侧底部的主题开关切换。
+基于 Hugo 和 Hextra 的中文个人博客，采用随窗口变化的深色三栏布局：左侧固定个人信息和可独立滚动的文章目录，中间首页/正文，右侧最近更新或章节目录。参考图中的猫以透明素材固定在视口右下角，桌面约半屏宽，眼睛跟随鼠标。默认深色，可通过左侧底部的主题开关切换。
 
 界面设计与验收文档：[docs/UI-REDESIGN.md](docs/UI-REDESIGN.md)。猫素材来源和许可：[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
@@ -48,7 +48,7 @@ hugo new content blog/my-next-post.md
 
 ## 修改内容与样式
 
-- `hugo.yaml`：站名、导航、站点介绍及域名；`params.profile` 控制作者名字、简介与 GitHub 链接，可添加 `avatar: images/avatar.jpg` 并将图片放在 `static/images/avatar.jpg`。
+- `hugo.yaml`：站名、导航、站点介绍及域名；`params.profile` 控制作者名字、简介与 GitHub 链接，`avatar` 已连接当前 GitHub 账号的头像地址。也支持将它改为本地图片，例如 `images/avatar.jpg`，图片放在 `static/images/avatar.jpg`。
 - `content/_index.md`：首页介绍。
 - `content/blog/_index.md`：博客索引介绍，文章列表自动生成。
 - `content/about.md`：关于页面。
@@ -56,6 +56,7 @@ hugo new content blog/my-next-post.md
 - `layouts/_partials/notes/`：个人区、首页、文章、目录、右栏等布局；首页主标题在 `home.html`。
 - `assets/css/custom.css`：布局、颜色、响应式与动效。
 - `assets/js/notes.js`：目录状态、抽屉、阅读进度、猫眼追踪。
+- `static/images/cat-reference-transparent.png`：由用户参考图提取的透明猫素材；修改图片或构图时，需同步调整猫模板的眼睛坐标。
 
 保留 Hextra 的 Markdown 渲染、全文搜索和主题切换；`cascade.type: docs` 继续使用本站的文档式布局覆盖。浏览器会记住手动选择的主题；如果仍显示浅色，通过侧栏底部切换到深色即可。手机通过左上角菜单查看导航，通过文章顶部“本文目录”查看章节。
 

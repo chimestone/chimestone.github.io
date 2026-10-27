@@ -2,6 +2,7 @@
 <html lang="{{ .Site.Language.Lang }}" dir="ltr">
   {{ partial "head.html" . }}
   <body class="notes-site{{ if .IsHome }} is-home{{ end }}">
+    {{ partial "notes/cat.html" . }}
     <noscript><style>@media(max-width:760px){.notes-sidebar{display:block;position:static;height:auto;border-right:0;padding:0}.notes-sidebar-inner{height:auto}.notes-tree-scroll{max-height:240px}.notes-mobile-header button{display:none}}</style></noscript>
     <a class="notes-skip" href="#content">跳至内容</a>
     <header class="notes-mobile-header">

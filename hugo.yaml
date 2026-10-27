@@ -39,6 +39,7 @@ params:
     name: "chimestone"
     tagline: "记录学习，整理思考。"
     github: "https://github.com/chimestone"
+    avatar: "https://avatars.githubusercontent.com/u/182640298?v=4&size=192"
   dateFormat: "2006年1月2日"
   theme:
     default: dark

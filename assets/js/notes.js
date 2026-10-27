@@ -162,7 +162,8 @@
       const dx = event.clientX - (box.left + box.width / 2);
       const dy = event.clientY - (box.top + box.height / 2);
       const angle = Math.atan2(dy, dx);
-      const distance = Math.min(.42, Math.hypot(dx, dy) / 350);
+      const range = Number(eye.dataset.travel) || .42;
+      const distance = Math.min(1, Math.hypot(dx, dy) / (window.innerWidth * .45)) * range;
       motion[index].targetX = Math.cos(angle) * distance;
       motion[index].targetY = Math.sin(angle) * distance;
     });
