@@ -71,7 +71,7 @@ html.light .notes-avatar { color: #496054; }
 .notes-hero { padding: clamp(48px,4.8vw,112px) 0 clamp(42px,3.6vw,80px); position: relative; }
 .notes-hero::before { content: ""; position: absolute; width: min(320px,100%); height: 240px; right: 0; top: 15px; z-index: -1; pointer-events: none; background: radial-gradient(ellipse,#bec9d606,transparent 70%); }
 .notes-eyebrow { display: flex; align-items: center; gap: 9px; font-size: 9px; color: var(--notes-muted); letter-spacing: .14em; font-weight: 500; }
-.notes-hero h1 { margin: 28px 0 25px; font-size: clamp(36px,3.6vw,86px); font-weight: 600; letter-spacing: -.045em; line-height: 1.47; }
+.notes-hero h1 { margin: 28px 0 25px; font-size: clamp(36px,3.6vw,86px); font-weight: 600; letter-spacing: .035em; line-height: 1.47; }
 .notes-hero-emphasis { color: #a5b4ac; }
 html.light .notes-hero-emphasis { color: #5b7466; }
 .notes-hero-intro { font-size: var(--notes-copy); line-height: 2.15; color: var(--notes-muted); max-width: 44ch; }
@@ -235,7 +235,7 @@ html.light .notes-cat { filter: invert(1); opacity: .12; }
   .notes-prose.content { font-size: 14px; }
   .notes-site :target, .notes-prose.content :where(h2,h3,h4) { scroll-margin-top: 80px; }
 }
-@media (max-width: 360px) { .notes-guide-grid { grid-template-columns: 1fr; } .notes-context-right { display: none; } }
+@media (max-width: 360px) { .notes-hero h1 { font-size: clamp(30px,9vw,34px); } .notes-guide-grid { grid-template-columns: 1fr; } .notes-context-right { display: none; } }
 @media (max-height: 680px) and (min-width: 761px) { .notes-avatar { margin-top: 20px; width: 46px; font-size: 22px; } .notes-social { margin: 12px 0 16px; } .notes-global-nav { padding: 14px 0; } .notes-tree-label { padding-top: 16px; } .notes-right { padding-top: 85px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .notes-site *, .notes-site *::before, .notes-site *::after { animation: none !important; transition: none !important; } }
 @media print { .notes-cat,.notes-sidebar,.notes-right,.notes-context,.notes-mobile-header,.notes-footer,.notes-article-end,.notes-neighbors { display: none !important; } .notes-layout { display: block; padding: 0; } .notes-main-column { min-height: 0; } body.notes-site { color: #111; background: white; } .notes-prose.content,.notes-article-header h1 { color: #111; } }
