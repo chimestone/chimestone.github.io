@@ -94,7 +94,10 @@
   let currentHeading = '';
   const updateReading = () => {
     readingScheduled = false;
-    const threshold = mobile.matches ? 100 : 52;
+    const rootPadding = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+    const headingElement = headingPairs[0]?.heading.closest('h2,h3,h4,h5,h6');
+    const headingMargin = headingElement ? parseFloat(getComputedStyle(headingElement).scrollMarginTop) || 0 : 0;
+    const threshold = Math.max(mobile.matches ? 100 : 52, rootPadding + headingMargin + 8);
     let active = headingPairs[0]?.id || '';
     headingPairs.forEach(({id, heading}) => { if (heading.getBoundingClientRect().top <= threshold) active = id; });
     if (active !== currentHeading) {

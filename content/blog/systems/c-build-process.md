@@ -1,4 +1,7 @@
 ---
+url: /blog/c-build-process/
+categories:
+  - 计算机系统
 title: 从 C 代码到可执行文件
 description: 用一个 Hello World，串起预处理、编译、汇编和链接四个阶段。
 date: 2026-10-28

@@ -8,7 +8,7 @@
     <header class="notes-mobile-header">
       <button class="notes-icon-button" type="button" data-nav-open aria-label="打开全站导航" aria-haspopup="dialog" aria-controls="notes-navigation">{{ partial "notes/icon.html" "menu" }}</button>
       <a href="{{ site.Home.RelPermalink }}">{{ site.Params.profile.name | default site.Title }}<span class="notes-small-dot"></span></a>
-      <button class="notes-icon-button" type="button" data-search-open aria-haspopup="dialog" aria-controls="hextra-search-dialog" aria-label="搜索文章">{{ partial "notes/icon.html" "search" }}</button>
+      {{ if and .IsPage (ne .Params.toc false) (gt (len .Fragments.Identifiers) 0) }}<button class="notes-icon-button" type="button" data-toc-open aria-haspopup="dialog" aria-controls="notes-mobile-toc" aria-label="本文目录">{{ partial "notes/icon.html" "list" }}</button>{{ else }}<button class="notes-icon-button" type="button" data-search-open aria-haspopup="dialog" aria-controls="hextra-search-dialog" aria-label="搜索文章">{{ partial "notes/icon.html" "search" }}</button>{{ end }}
     </header>
     <div class="notes-layout">
       <aside class="notes-sidebar" id="notes-sidebar" aria-label="个人信息与全站导航">{{ partial "notes/sidebar.html" . }}</aside>

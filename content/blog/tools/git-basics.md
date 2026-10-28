@@ -1,4 +1,7 @@
 ---
+url: /blog/git-basics/
+categories:
+  - 工具与实践
 title: Git 操作笔记：分支、合并与撤销
 description: 从分支切换到撤销提交，理清 branch、merge、rebase、reset 和 revert 的区别。
 date: 2026-10-28

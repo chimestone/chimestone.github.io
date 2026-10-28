@@ -5,6 +5,18 @@ languageCode: "zh-CN"
 defaultContentLanguage: "zh-cn"
 hasCJKLanguage: true
 
+markup:
+  goldmark:
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block: [['\\[', '\\]'], ['$$', '$$']]
+          inline: [['\\(', '\\)'], ['$', '$']]
+  tableOfContents:
+    startLevel: 2
+    endLevel: 2
+
 caches:
   images:
     dir: :cacheDir/images

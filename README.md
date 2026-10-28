@@ -71,3 +71,9 @@ hugo --minify
 生成的 `public/` 可部署到静态网站托管服务。首次构建需要联网获取 Hextra 模块和搜索脚本。自动部署流程固定使用已验证的 Hugo Extended 0.157.0，并按 `go.mod` 安装 Go。源码中的 `baseURL` 已设置为 GitHub Pages 地址，Actions 构建时还会使用 Pages 返回的实际地址。
 
 `public/`、`.tools/` 和缓存目录不会提交到仓库。发布无需个人访问令牌或服务器 SSH 密钥，使用 GitHub Actions 自带的临时部署凭据。
+
+## 分类与合并笔记
+
+文章放在 content/blog/systems（计算机系统）、databases（数据库）、math（数学基础）、tools（工具与实践）中。每个分类的 _index.md 控制分类名与顺序。主分类通过文件夹和 categories 保持一致，细知识点用 tags。
+
+同一课程目录合为一篇时，章节使用二级标题，细分内容使用三级及以下标题，网页目录只列章节。公式使用美元符号或 LaTeX 括号定界符；Hugo 会在构建阶段检查并输出 MathML。原笔记库不会被 CI 自动同步，后续新增内容仍需筛查后再发布。

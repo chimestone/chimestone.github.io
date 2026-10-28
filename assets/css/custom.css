@@ -182,3 +182,12 @@ html.light .notes-cat { filter: invert(1); opacity: .12; }
 @media (max-height: 680px) and (min-width: 761px) { .notes-avatar { margin-top: 20px; width: 46px; font-size: 22px; } .notes-social { margin: 12px 0 16px; } .notes-global-nav { padding: 14px 0; } .notes-tree-label { padding-top: 16px; } .notes-right { padding-top: 85px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .notes-site *, .notes-site *::before, .notes-site *::after { animation: none !important; transition: none !important; } }
 @media print { .notes-cat,.notes-sidebar,.notes-right,.notes-context,.notes-mobile-header,.notes-footer,.notes-article-end,.notes-neighbors { display: none !important; } .notes-layout { display: block; padding: 0; } .notes-main-column { min-height: 0; } body.notes-site { color: #111; background: white; } .notes-prose.content,.notes-article-header h1 { color: #111; } }
+/* Long notes keep equations and wide tables within the reading column. */
+.notes-prose.content math { font-family: "Cambria Math", "STIX Two Math", math; font-size: 1.05em; }
+.notes-prose.content math[display="block"] { max-width: 100%; overflow-x: auto; padding-block: 12px; }
+.notes-prose.content table { display: block; max-width: 100%; overflow-x: auto; }
+.notes-prose.content h4 { font-size: 16px; margin-top: 26px; }
+.notes-prose.content :where(h5,h6) { font-size: var(--notes-copy); margin-top: 20px; margin-bottom: 10px; }
+.notes-prose.content .katex { display: inline-block; max-width: 100%; overflow-x: auto; vertical-align: middle; }
+.notes-prose.content .katex:has(math[display="block"]) { display: block; }
+@media (max-width: 760px) { .notes-context .notes-outline-open { display: none; } }
