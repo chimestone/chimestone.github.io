@@ -1,12 +1,6 @@
 <div class="notes-rail-inner">
-  {{ if .IsHome }}
-    <section class="notes-rail-section"><p class="notes-rail-caption">最近更新 <span>RECENT</span></p><div class="notes-recent">{{ range first 3 (where site.RegularPages "Section" "blog").ByDate.Reverse }}<a href="{{ .RelPermalink }}"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01.02" }}</time><span>{{ .Title }}</span>{{ partial "notes/icon.html" "diagonal" }}</a>{{ else }}<p class="notes-muted">新的记录即将开始。</p>{{ end }}</div></section>
-    {{ with site.Taxonomies.tags }}<section class="notes-rail-section"><p class="notes-rail-caption">话题 <span>TOPICS</span></p><div class="notes-topic-list">{{ range first 8 .ByCount }}<a href="{{ .Page.RelPermalink }}"># {{ .Page.Title }}</a>{{ end }}</div></section>{{ end }}
-    <a class="notes-rss-link" href="{{ "blog/index.xml" | relURL }}">{{ partial "notes/icon.html" "rss" }}<span>用 RSS 慢慢读<small>有新文章时，再见。</small></span>{{ partial "notes/icon.html" "diagonal" }}</a>
-  {{ else }}
-    {{ if and (ne .Params.toc false) (gt (len .Fragments.Identifiers) 0) }}<section class="notes-rail-section notes-outline-section"><p class="notes-rail-caption">本文目录 <span>ON THIS PAGE</span></p><div class="notes-outline">{{ .TableOfContents | replaceRE ` id="TableOfContents"` "" | safeHTML }}</div></section>{{ end }}
-    {{ if .IsPage }}<div class="notes-reading"><div><span>阅读进度</span><output data-reading-label>0%</output></div><div class="notes-reading-track"><div data-reading-bar></div></div><button type="button" data-back-top>回到顶部 <span aria-hidden="true">↑</span></button></div>{{ end }}
-    {{ if not .IsPage }}<a class="notes-rss-link" href="{{ "blog/index.xml" | relURL }}">{{ partial "notes/icon.html" "rss" }}<span>订阅博客<small>让更新自己找过来。</small></span></a>{{ end }}
+  {{ if and .IsPage (ne .Params.toc false) (gt (len .Fragments.Identifiers) 0) }}
+    <section class="notes-rail-section notes-outline-section"><p class="notes-rail-caption">本文目录</p><div class="notes-outline">{{ .TableOfContents | replaceRE ` id="TableOfContents"` "" | safeHTML }}</div></section>
+    <div class="notes-reading"><div><span>阅读进度</span><output data-reading-label>0%</output></div><div class="notes-reading-track"><div data-reading-bar></div></div><button type="button" data-back-top>回到顶部 <span aria-hidden="true">↑</span></button></div>
   {{ end }}
-  <div class="notes-rail-footer"><span>STAY CURIOUS.</span><span aria-hidden="true">✳</span></div>
 </div>

@@ -1,9 +1,8 @@
 <section class="notes-hero" aria-labelledby="notes-hero-title">
-  <p class="notes-eyebrow" data-reveal><span class="notes-small-dot"></span> HELLO, I'M {{ site.Params.profile.name | upper }}</p>
   <h1 id="notes-hero-title" data-reveal>保持好奇，<br>让思考<span class="notes-hero-emphasis">留下痕迹。</span></h1>
   <div class="notes-hero-intro" data-reveal>{{ .Content }}</div>
-  <div class="notes-hero-actions" data-reveal><a class="notes-primary-link" href="{{ "blog/" | relURL }}">开始阅读 {{ partial "notes/icon.html" "arrow" }}</a><a class="notes-secondary-link" href="{{ "about/" | relURL }}">认识一下 {{ partial "notes/icon.html" "diagonal" }}</a></div>
-  <div class="notes-hero-footnote" data-reveal><span class="notes-line"></span> 不急于表达完整，先认真记录。</div>
 </section>
-<section class="notes-guides" aria-labelledby="notes-guides-title" data-reveal><div class="notes-section-heading"><h2 id="notes-guides-title">从这里出发</h2><span>FIND YOUR WAY</span></div><div class="notes-guide-grid"><a href="{{ "blog/" | relURL }}" class="notes-guide"><span class="notes-guide-top">{{ partial "notes/icon.html" "book" }}<small>01 / READ</small></span><h3>翻开我的笔记</h3><p>学习中的问题、实践，以及慢慢理清的思路。</p><span class="notes-guide-bottom">浏览全部文章 {{ partial "notes/icon.html" "diagonal" }}</span></a><a href="{{ "about/" | relURL }}" class="notes-guide"><span class="notes-guide-top">{{ partial "notes/icon.html" "person" }}<small>02 / ABOUT</small></span><h3>关于这个小站</h3><p>为什么写下这些，以及这里正在记录什么。</p><span class="notes-guide-bottom">了解更多 {{ partial "notes/icon.html" "diagonal" }}</span></a></div></section>
-<section class="notes-latest" aria-labelledby="notes-latest-title" data-reveal><div class="notes-section-heading"><h2 id="notes-latest-title">最近写下的</h2><a href="{{ "blog/" | relURL }}">所有文章 {{ partial "notes/icon.html" "arrow" }}</a></div>{{ range first 4 (where site.RegularPages "Section" "blog").ByDate.Reverse }}{{ partial "notes/post.html" . }}{{ else }}<p class="notes-empty">第一篇记录正在酝酿中。</p>{{ end }}</section>
+<section class="notes-latest" aria-labelledby="notes-latest-title" data-reveal>
+  <div class="notes-section-heading"><h2 id="notes-latest-title">最近的笔记</h2><a href="{{ "blog/" | relURL }}">全部文章 {{ partial "notes/icon.html" "arrow" }}</a></div>
+  <div class="notes-post-list">{{ range first 5 (where site.RegularPages "Section" "blog").ByDate.Reverse }}{{ partial "notes/post.html" . }}{{ else }}<p class="notes-empty">新的记录正在整理。</p>{{ end }}</div>
+</section>
