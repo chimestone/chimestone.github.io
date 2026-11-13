@@ -1,11 +1,17 @@
 {{/* User-provided reference, transparent extraction. See THIRD_PARTY_NOTICES.md. */}}
 <div class="notes-cat" data-cat aria-hidden="true">
   <svg class="notes-cat-art" viewBox="230 70 1360 817" fill="none" focusable="false" preserveAspectRatio="xMidYMax meet">
-    <image href="{{ "images/cat-reference-transparent.png" | relURL }}" width="1774" height="887"/>
+    <defs>
+      {{/* Recolor only the existing raster outline; preserve its transparency. */}}
+      <filter id="notes-cat-ginger" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+        <feColorMatrix type="matrix" values="0 0 0 0 .7451  0 0 0 0 .4784  0 0 0 0 .2196  0 0 0 1 0"/>
+      </filter>
+    </defs>
+    <image class="notes-cat-outline" href="{{ "images/cat-reference-transparent.png" | relURL }}" width="1774" height="887"/>
     {{/* Separate eye layers preserve cursor tracking without redrawing the cat. */}}
-    <circle data-eye data-travel="17" cx="645" cy="770" r="99" fill="#f6f6f6"/>
-    <g data-pupil transform="translate(0 0)"><circle cx="645" cy="770" r="77" fill="#101112"/><circle cx="621" cy="741" r="18" fill="#fff"/><circle cx="661" cy="742" r="8" fill="#fff"/></g>
-    <circle data-eye data-travel="17" cx="1137" cy="768" r="99" fill="#f6f6f6"/>
-    <g data-pupil transform="translate(0 0)"><circle cx="1137" cy="768" r="77" fill="#101112"/><circle cx="1113" cy="739" r="18" fill="#fff"/><circle cx="1153" cy="740" r="8" fill="#fff"/></g>
+    <circle class="notes-cat-eye" data-eye data-travel="17" cx="645" cy="770" r="99" fill="#f6f6f6"/>
+    <g data-pupil transform="translate(0 0)"><circle class="notes-cat-pupil" cx="645" cy="770" r="77" fill="#101112"/><circle cx="621" cy="741" r="18" fill="#fff"/><circle cx="661" cy="742" r="8" fill="#fff"/></g>
+    <circle class="notes-cat-eye" data-eye data-travel="17" cx="1137" cy="768" r="99" fill="#f6f6f6"/>
+    <g data-pupil transform="translate(0 0)"><circle class="notes-cat-pupil" cx="1137" cy="768" r="77" fill="#101112"/><circle cx="1113" cy="739" r="18" fill="#fff"/><circle cx="1153" cy="740" r="8" fill="#fff"/></g>
   </svg>
 </div>

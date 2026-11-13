@@ -11,3 +11,5 @@
 > Edit the USER ATTACHED reference screenshot of the hand-drawn white outline peeking cat on a black background, with huge round eyes near the bottom and a tiny bee above (not any screenshots of the blog webpage). This is background removal / extraction, NOT illustration generation: preserve the original cat silhouette, irregular white pen strokes, ear shapes and eye placement faithfully. Extract only the cat from that reference. Remove the flat black background, make the black interior of the cat transparent as well, retain the white outline and the white eye discs with black pupils and small white highlights. Remove the tiny bee above and remove the straight horizontal ledge line below. Crop close around the cat head, with just a small transparent margin, and retain its peeking crop at the bottom. Output a real transparent RGBA PNG, no checkerboard, no new styling, no replacement cat, no text.
 
 维护：猫模板位于 `layouts/_partials/notes/cat.html`；视口位置、尺寸、透明度位于 `assets/css/custom.css`；瞳孔移动范围由每只眼睛的 `data-travel` 控制，移动半径与瞳孔半径之和小于眼白半径。
+
+2026-11-13：浅色主题使用 SVG 颜色矩阵将现有轮廓映射为橘猫色 `#be7a38`，保留原图透明度；眼白改为奶油色、瞳孔改为棕色。仅改变网页渲染配色，PNG 原文件与深色主题的白色线稿保持不变。

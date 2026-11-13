@@ -47,6 +47,7 @@ menu:
 
 params:
   description: "我的个人博客"
+  editURL: "https://github.com/chimestone/chimestone.github.io/edit/main/content/"
   profile:
     name: "chime-stone"
     tagline: "钟磬昼不响，空山自泠泠"

@@ -1,0 +1,5 @@
+{{- with .File -}}
+  {{- with site.Params.editURL -}}
+    <a href="{{ printf "%s%s" . (replace $.File.Path "\\" "/") }}" target="_blank" rel="noopener noreferrer" aria-label="在 GitHub 编辑此页（新窗口）">编辑此页 {{ partial "notes/icon.html" "diagonal" }}</a>
+  {{- end -}}
+{{- end -}}
