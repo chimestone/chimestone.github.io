@@ -103,8 +103,10 @@ html.light .notes-hero-emphasis { color: #5b7466; }
 .notes-reading > button:hover { color: var(--notes-text); }
 .notes-cat { position: fixed; z-index: 0; inset: auto 0 0 auto; width: 50vw; max-height: 62dvh; aspect-ratio: 1360 / 817; overflow: clip; pointer-events: none; user-select: none; opacity: .28; mask-image: linear-gradient(90deg,transparent,#000 34%); }
 .notes-cat-art { display: block; width: 100%; height: 100%; overflow: hidden; }
+.notes-cat-filled { display: none; }
 html.light .notes-cat { opacity: .24; }
-html.light .notes-cat-outline { filter: url(#notes-cat-ginger); }
+html.light .notes-cat-outline { display: none; }
+html.light .notes-cat-filled { display: block; }
 html.light .notes-cat-eye { fill: #fff4e3; }
 html.light .notes-cat-pupil { fill: #754a2b; }
 .notes-article-header { padding: 55px 0 28px; border-bottom: 1px solid var(--notes-border); margin-bottom: 28px; }

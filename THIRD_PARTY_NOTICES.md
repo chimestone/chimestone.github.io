@@ -12,6 +12,11 @@ The screenshot does not establish the original artist or license. This repositor
 does not claim an MIT license for the supplied artwork. Asset details and the
 editing prompt are recorded in `docs/assets/cat-reference.md`.
 
+`static/images/cat-ginger-filled.png` is an imagegen-edited, filled ginger variant of
+that same reference, created at the user's request on 2026-11-13 for the light theme.
+The same provenance and licensing limitations apply. The original outline remains
+in use for the dark theme; both variants share the independent SVG eye layers.
+
 ## Cursor-eye movement reference
 
 Adapted direction-and-bounds technique from Takane Ichinose's “Cat eye following mouse pointer”:
