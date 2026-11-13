@@ -74,6 +74,8 @@ hugo --minify
 
 ## 分类与合并笔记
 
-文章放在 content/blog/systems（计算机系统）、databases（数据库）、math（数学基础）、tools（工具与实践）中。每个分类的 _index.md 控制分类名与顺序。主分类通过文件夹和 categories 保持一致，细知识点用 tags。
+文章放在 content/blog/systems（计算机系统）、algorithms（算法与数据结构）、databases（数据库）、math（数学基础）、tools（工具与实践）中。每个分类的 _index.md 控制分类名与顺序。主分类通过文件夹和 categories 保持一致，细知识点用 tags。
+
+并行算法课程目录已合并为英文文章 `content/blog/algorithms/parallel-algorithms.md`，包含序列与 Standard ML 实验笔记，并标明随机算法和图搜索尚未完成的范围。英文文章可设置 `contentLanguage: en`，为正文添加正确的语言标记，网站导航仍使用中文。
 
 同一课程目录合为一篇时，章节使用二级标题，细分内容使用三级及以下标题，网页目录只列章节。公式使用美元符号或 LaTeX 括号定界符；Hugo 会在构建阶段检查并输出 MathML。原笔记库不会被 CI 自动同步，后续新增内容仍需筛查后再发布。
